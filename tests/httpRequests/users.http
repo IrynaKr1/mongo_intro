@@ -1,0 +1,75 @@
+
+##201
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "firstName":"Taras",
+    "lastName":"Testowski2",
+    "email":"test2@mail.com",
+    "birthday":"2000-04-13",
+    "gender":"male",
+    "isMarried":"true",
+    "workExperience":2
+}
+
+###
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "firstName":"T",
+    "lastName":"T",
+    "email":"test2@mail.com",
+    "birthday":"2000-04-13",
+    "gender":"male",
+    "isMarried":"true",
+    "workExperience":2
+}
+
+### 200 {}
+GET http://localhost:5000/api/users
+
+GET http://localhost:5000/api/users?limit=1&skip=1
+
+### 200 {}
+GET http://localhost:5000/api/users/69de746a15116f1e2d504436
+
+
+### 200 {}
+GET http://localhost:5000/api/users/69de746a15116f1e2d504456
+
+### 200 {}
+PATCH http://localhost:5000/api/users/69de746a15116f1e2d504436
+Content-Type: application/json
+
+{
+    "firstName":"Trampolina",
+    "isMarried":"false"
+}
+
+## 204 {}
+
+DELETE http://localhost:5000/api/users/69de73fa58c9a8444e6bd044
+
+###
+POST http://localhost:5000/api/users/69de746a15116f1e2d504436/posts
+Content-Type: application/json
+
+{
+    "body":"Some new post 2"
+}
+
+### 404
+POST http://localhost:5000/api/users/68de746a15116f1e2d504436/posts
+Content-Type: application/json
+
+{
+    "body":"Some new post 2"
+}
+
+###
+GET http://localhost:5000/api/users/69de746a15116f1e2d504436/posts
+
+###
+GET http://localhost:5000/api/posts
