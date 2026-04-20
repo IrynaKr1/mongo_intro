@@ -1,5 +1,6 @@
 const createHttpError = require('http-errors');
 const mongoose = require('mongoose');
+const _ = require('lodash');
 const { Phone } = require('../model');
 
 module.exports.createPhone = async (req, res, next) => {
@@ -17,7 +18,14 @@ module.exports.createPhone = async (req, res, next) => {
     next(error);
   }
 };
-module.exports.getPhones = async (req, res, next) => {};
+module.exports.getPhones = async (req, res, next) => {
+  try {
+    const findAllPhones = await Phone.find().sort({ id: 1 });
+    res.status(200).send({ data: findAllPhones });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports.getPhoneById = async (req, res, next) => {};
 module.exports.updatePhoneById = async (req, res, next) => {};
