@@ -23,3 +23,6 @@ Content-Type: application/json
     "number":"+38244433333",
     "type":"work"
 }
+
+###
+DELETE http://localhost:5000/api/phones/69e665021d55a925ba1c5408

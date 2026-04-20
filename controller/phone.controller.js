@@ -64,4 +64,19 @@ module.exports.updatePhoneById = async (req, res, next) => {
     next(error);
   }
 };
-module.exports.deletePhoneById = async (req, res, next) => {};
+
+module.exports.deletePhoneById = async (req, res, next) => {
+  const { phoneId } = req.params;
+
+  try {
+    const deletePhoneById = await Phone.findByIdAndDelete(phoneId);
+
+    if (!deletePhoneById) {
+      return next(createHttpError(404, 'Phone not found'));
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
+};
