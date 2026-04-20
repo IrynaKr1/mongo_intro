@@ -1,9 +1,23 @@
 const createHttpError = require('http-errors');
 const mongoose = require('mongoose');
+const { Phone } = require('../model');
 
-module.exports.createPhone = async (req, res, next) => {};
-module.exports.getPhones = async (req, res, next) => {
+module.exports.createPhone = async (req, res, next) => {
+  const { body } = req;
+
+  try {
+    const createdPhone = await Phone.create(body);
+
+    if (!createdPhone) {
+      return next(createHttpError(400, 'Bad request'));
+    }
+
+    res.status(201).send({ data: createdPhone });
+  } catch (error) {
+    next(error);
+  }
 };
+module.exports.getPhones = async (req, res, next) => {};
 
 module.exports.getPhoneById = async (req, res, next) => {};
 module.exports.updatePhoneById = async (req, res, next) => {};

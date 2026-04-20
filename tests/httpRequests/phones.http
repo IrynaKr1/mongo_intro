@@ -1,2 +1,9 @@
-### 200
-GET http://localhost:5000/api/phones
+### 201
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+    "number":"+48123456789",
+    "type":"home",
+    "owner":"69e1125096cc4bce87a2c2e7"
+}
