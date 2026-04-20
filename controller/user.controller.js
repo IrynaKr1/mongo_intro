@@ -1,7 +1,7 @@
 const createHttpError = require('http-errors');
 const mongoose = require('mongoose');
 const _ = require('lodash');
-const { User, Post } = require('../model');
+const { User, Post, Phone } = require('../model');
 
 module.exports.createUser = async (req, res, next) => {
   const { body } = req;
@@ -128,6 +128,29 @@ module.exports.getUserPosts = async (req, res, next) => {
     }
 
     res.status(200).send({ data: foundPosts });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.getUserPhones = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    const result = await User.aggregate()
+      .match({ _id: new mongoose.Types.ObjectId(userId) })
+      .lookup({
+        from: 'phones',
+        localField: '_id',
+        foreignField: 'owner',
+        as: 'phones',
+      });
+
+    if (!result.length) {
+      return next(createHttpError(404, 'User Not Found'));
+    }
+
+    res.status(200).send({ data: result[0] });
   } catch (error) {
     next(error);
   }

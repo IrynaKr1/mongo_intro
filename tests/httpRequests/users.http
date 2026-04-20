@@ -73,3 +73,6 @@ GET http://localhost:5000/api/users/69de746a15116f1e2d504436/posts
 
 ###
 GET http://localhost:5000/api/posts
+
+###
+GET http://localhost:5000/api/users/69e1125096cc4bce87a2c2e7/phones
