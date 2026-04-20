@@ -42,5 +42,26 @@ module.exports.getPhoneById = async (req, res, next) => {
     next(error);
   }
 };
-module.exports.updatePhoneById = async (req, res, next) => {};
+
+module.exports.updatePhoneById = async (req, res, next) => {
+  const {
+    params: { phoneId },
+    body,
+  } = req;
+
+  try {
+    const updatePhoneById = await Phone.findByIdAndUpdate(phoneId, body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatePhoneById) {
+      return next(createHttpError(404, 'Phone did not found'));
+    }
+
+    res.status(200).send({ data: updatePhoneById });
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports.deletePhoneById = async (req, res, next) => {};

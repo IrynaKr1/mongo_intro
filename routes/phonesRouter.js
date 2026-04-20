@@ -11,7 +11,7 @@ phoneRouter
 phoneRouter
   .route('/:phoneId')
   .get(phoneController.getPhoneById)
-  .post(phoneController.updatePhoneById)
+  .patch(phoneController.updatePhoneById)
   .delete(phoneController.deletePhoneById);
 
 module.exports = phoneRouter;
