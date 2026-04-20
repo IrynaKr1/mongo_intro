@@ -27,6 +27,20 @@ module.exports.getPhones = async (req, res, next) => {
   }
 };
 
-module.exports.getPhoneById = async (req, res, next) => {};
+module.exports.getPhoneById = async (req, res, next) => {
+  const { phoneId } = req.params;
+  const findPhoneById = await Phone.findById(phoneId);
+  if (!findPhoneById) {
+    return next(createHttpError(404, 'Phone not exist'));
+  }
+
+  const preparedPhone = _.omit(findPhoneById.toObject(), ['updatedAt']);
+
+  res.status(200).send({ data: preparedPhone });
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports.updatePhoneById = async (req, res, next) => {};
 module.exports.deletePhoneById = async (req, res, next) => {};

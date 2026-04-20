@@ -9,7 +9,7 @@ phoneRouter
   .post(phoneController.createPhone);
 
 phoneRouter
-  .route('/phoneId')
+  .route('/:phoneId')
   .get(phoneController.getPhoneById)
   .post(phoneController.updatePhoneById)
   .delete(phoneController.deletePhoneById);

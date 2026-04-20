@@ -10,3 +10,7 @@ Content-Type: application/json
 
 ### 200
 GET http://localhost:5000/api/phones
+
+
+### 200
+GET http://localhost:5000/api/phones/69e665021d55a925ba1c5408

@@ -32,7 +32,6 @@ module.exports.getUsers = async (req, res, next) => {
 module.exports.getUserById = async (req, res, next) => {
   const { userId } = req.params;
   try {
-    console.log('req', req);
     const findUserById = await User.findById(userId);
 
     if (!findUserById) {
