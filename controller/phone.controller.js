@@ -20,7 +20,7 @@ module.exports.createPhone = async (req, res, next) => {
 };
 module.exports.getPhones = async (req, res, next) => {
   try {
-    const findAllPhones = await Phone.find().sort({ id: 1 });
+    const findAllPhones = await Phone.find().sort({ _id: 1 });
     res.status(200).send({ data: findAllPhones });
   } catch (error) {
     next(error);

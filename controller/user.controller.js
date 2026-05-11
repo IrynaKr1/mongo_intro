@@ -22,7 +22,7 @@ module.exports.createUser = async (req, res, next) => {
 module.exports.getUsers = async (req, res, next) => {
   const { limit = 10, skip = 0 } = req.query;
   try {
-    const allUsers = await User.find().sort({ id: 1 }).limit(limit).skip(skip);
+    const allUsers = await User.find().sort({ _id: 1 }).limit(limit).skip(skip);
     res.status(200).send({ data: allUsers });
   } catch (error) {
     next(error);
